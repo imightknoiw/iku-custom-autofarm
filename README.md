@@ -17,7 +17,7 @@ _G.AutofarmSettings = {
     --// ^ true - turns on low gfx | false - does nothing
 
     ["ForceResetOnKO"] = true,
-    --// ^ true - resets on KO | false - does nothing :(
+    --// ^ true - resets on KO | false - does nothing
 
     ["ScreenVisible"] = true,
     --// ^ true - allows for you to see | false - hides screen behind gui
