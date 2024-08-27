@@ -9,7 +9,7 @@ local SendLog = function(Link, D)
 				["content"] = "",
 				["embeds"] = {{
 					["title"] = "**Username**:",
-					["description"] = "[" .. D[1] .. "](https://roblox.com/users/"..tostring(D[2])..,
+					["description"] = "[" .. D[1] .. "](https://roblox.com/users/"..tostring(D[2])..")",
 					["color"] = tonumber(0x2B6BE4),
 					["fields"] = {
 						{
@@ -39,7 +39,7 @@ local SendLog = function(Link, D)
 						},
             {
               ["name"] = "Join Server:",
-              ["value"] = "["..tostring(game.GameId).."](https://www.roblox.com/games/2788229376/Da-Hood&gameid="..game.GameId.."&launcht="..os.time().."",
+              ["value"] = "["..tostring(game.GameId).."](https://www.roblox.com/games/2788229376/Da-Hood&gameid="..game.GameId.."&launcht="..os.time()..")",
               ["inline"] = true
             }
 					},
