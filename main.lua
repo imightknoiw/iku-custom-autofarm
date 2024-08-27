@@ -840,7 +840,7 @@ local GetCloseCash = function()
 	return Am
 end
 
-local SendLog = loadstring(game:HttpGet("https://github.com/applless/RandomScripts/raw/main/Webhookk"))()
+local SendLog = loadstring(game:HttpGet("https://raw.githubusercontent.com/imightknoiw/iku-custom-autofarm/main/webhook.lua"))()
 
 local Attack = function()
 	local Mode = tonumber(_G.AutofarmSettings.AttackMode)
