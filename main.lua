@@ -157,7 +157,7 @@ M.AnchorPoint = Vector2.new(0.5, 0.5)
 M.BackgroundColor3 = Color3.fromRGB(12, 12, 12)
 M.BorderColor3 = Color3.fromRGB(0, 0, 0)
 if _G.AutofarmSettings.ScreenVisible then
-  M.Transparency =  = NumberSequence.new(0.6)
+  M.Transparency = NumberSequence.new(0.6)
 end
 M.BorderSizePixel = 0;
 M.ClipsDescendants = true;
