@@ -7,7 +7,7 @@ _G.AutofarmSettings = {
     ["AttackMode"] = "2",
     --// ^ 1 - Fast Punch | 2 - Super Punch - fastest with max moveset | 3 - Knife
 
-    ["Fps"] = "10",
+    ["Fps"] = "60",
     --// ^ Wouldnt recommend going below 5. ^
 
     ["VolumeOff"] = false, 
