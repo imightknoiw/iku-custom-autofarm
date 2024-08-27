@@ -146,7 +146,7 @@ B.BorderColor3 = Color3.fromRGB(0, 0, 0)
 B.BorderSizePixel = 0;
 B.Size = UDim2.new(1, 0, 1, 0)
 if _G.AutofarmSettings.ScreenVisible then
-  BG.Transparency = 1
+  BG.Transparency = NumberSequence.new(0) 
 end
 BG.Rotation = 90;
 BG.Name = "BG"
@@ -157,7 +157,7 @@ M.AnchorPoint = Vector2.new(0.5, 0.5)
 M.BackgroundColor3 = Color3.fromRGB(12, 12, 12)
 M.BorderColor3 = Color3.fromRGB(0, 0, 0)
 if _G.AutofarmSettings.ScreenVisible then
-  M.Transparency = 0.6
+  M.Transparency =  = NumberSequence.new(0.6)
 end
 M.BorderSizePixel = 0;
 M.ClipsDescendants = true;
