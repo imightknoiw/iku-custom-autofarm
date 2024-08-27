@@ -1,9 +1,3 @@
---[[ 
-    releasing this as opensource because obfuscation can mess with the performance and shit
-    if you skid from this atleast credit me or something
-    this is coded poorly btw
-]]
-
 if (_G.EXC ~= nil) then
 	warn("already executed")
 	return 
