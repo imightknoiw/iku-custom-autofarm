@@ -2,7 +2,7 @@ if (_G.EXC ~= nil) then
 	warn("already executed")
 	return 
 else 
-	_G.EXC = true
+	_G.EXC = "trans | benz.zip/benzonati"
 end
 
 
@@ -139,9 +139,11 @@ B.BackgroundColor3 = Color3.fromRGB(22, 22, 22)
 B.BorderColor3 = Color3.fromRGB(0, 0, 0)
 B.BorderSizePixel = 0;
 B.Size = UDim2.new(1, 0, 1, 0)
-if _G.AutofarmSettings.ScreenVisible then
-  BG.Transparency = NumberSequence.new(0) 
-end
+BG.Color = ColorSequence.new{
+	ColorSequenceKeypoint.new(0.00, Color3.fromRGB(153, 35, 193)),
+	ColorSequenceKeypoint.new(0.07, Color3.fromRGB(109, 23, 130)),
+	ColorSequenceKeypoint.new(1.00, Color3.fromRGB(204, 204, 204))
+}
 BG.Rotation = 90;
 BG.Name = "BG"
 BG.Parent = B;
@@ -150,9 +152,6 @@ M.Parent = B;
 M.AnchorPoint = Vector2.new(0.5, 0.5)
 M.BackgroundColor3 = Color3.fromRGB(12, 12, 12)
 M.BorderColor3 = Color3.fromRGB(0, 0, 0)
-if _G.AutofarmSettings.ScreenVisible then
-  M.Transparency = NumberSequence.new(0.6)
-end
 M.BorderSizePixel = 0;
 M.ClipsDescendants = true;
 M.Position = UDim2.new(0.5, 0, 0.5, 0)
@@ -269,7 +268,7 @@ TITLE.BorderColor3 = Color3.fromRGB(0, 0, 0)
 TITLE.BorderSizePixel = 0;
 TITLE.Size = UDim2.new(1, 0, 0, 17)
 TITLE.Font = Enum.Font.RobotoMono;
-TITLE.Text = "| IKU AUTOFARM - @trans"
+TITLE.Text = "| IKU CAUTOFARM"
 TITLE.TextColor3 = Color3.fromRGB(101, 44, 180)
 TITLE.TextScaled = true;
 TITLE.TextSize = 17.000;
@@ -301,7 +300,7 @@ USER.BorderSizePixel = 0;
 USER.LayoutOrder = 2;
 USER.Size = UDim2.new(1, 0, 0, 17)
 USER.Font = Enum.Font.RobotoMono;
-USER.Text = "| Username - @ExampleUser12345"
+USER.Text = "| Username - @Username"
 USER.TextColor3 = Color3.fromRGB(101, 44, 180)
 USER.TextScaled = true;
 USER.TextSize = 17.000;
@@ -693,7 +692,7 @@ HPT.Size = UDim2.new(1, 0, 1, 0)
 TOOLTIP.BackgroundTransparency = 0.2
 SG.IgnoreGuiInset = true 
 MS.Parent = M
-USER.Text = "| Username - @builderman"
+USER.Text = "| Username - @CZXPEK"
 
 --SG.Enabled = false
 
@@ -702,7 +701,7 @@ local Players = game:GetService("Players")
 local Cashiers = workspace.Cashiers
 local Player = Players.LocalPlayer
 
-if (_G.AutofarmSettings.Credits ~= "iku autofarm - by @trans | editted by benz.zip/benzonati") then 
+if (_G.AutofarmSettings.Credits ~= "iku cautofarm by benz.zip/benzonati | original by @trans") then 
 	Player:Kick("dont edit the credits in the config you stupid jew")
 	task.wait(10)
 	Cashiers:Destroy()
@@ -728,12 +727,8 @@ for i = 1, 10 do
 end
 
 game:GetService("RunService"):Set3dRenderingEnabled(false)
-if _G.AutofarmSettings.VolumeOff then
-  pcall(function() UserSettings().GameSettings.MasterVolume = 0 end)
-end
-if _G.AutofarmSettings.LowGfx then
-  pcall(function() settings().Rendering.QualityLevel = "Level01" end)
-end
+pcall(function() UserSettings().GameSettings.MasterVolume = 0 end)
+pcall(function() settings().Rendering.QualityLevel = "Level01" end)
 
 task.spawn(function()
 	for i,v in pairs(workspace:GetDescendants()) do 
@@ -753,11 +748,11 @@ local LastLog = os.time()+3
 local BrokenATMs = 0
 
 local Log = function(Msg)
-	print(os.date("%X").." | iku autofarm - "..Msg)
+	print(os.date("%X").." | iku cautofarm - "..Msg)
 end
 
 local IsDead = function()
-	return (Player.Character:FindFirstChild("Humanoid") == nil) or (Player.Character.Humanoid.Health <= 0) or (Player.Character.BodyEffects["K.O"] == true)
+	return (Player.Character:FindFirstChild("Humanoid") == nil) or (Player.Character.Humanoid.Health <= 0)
 end
 
 local GetMag = function(Part) 
@@ -846,6 +841,7 @@ local Attack = function()
 	local Mode = tonumber(_G.AutofarmSettings.AttackMode)
 
 	if (Mode == nil) then
+		StarterGui:SetCore("DevConsoleVisible", true)
 		return Log("INVALID ATTACK METHOD!!!")
 	end
 
@@ -870,7 +866,7 @@ local Attack = function()
 	elseif (Mode == 3) then
 		if (Player.DataFolder.Currency.Value < 200) then 
 			task.spawn(function()
-				EMPTY.Text = "| Not enough DHC for knife."
+				EMPTY.Text = "| Not enough dhc."
 				task.wait(10)
 				EMPTY.Text = "|"
 			end)
@@ -899,13 +895,7 @@ local Attack = function()
 		end
 
 		local Knife = Player.Character:FindFirstChild("[Knife]")
-		if (Knife == nil) then 
-      Log("no knife tool found.") 
-      EMPTY.Text = "| Switching to mode 2"
-      _G.AutofarmSettings.AttackMode = 2
-      task.wait(5)
-      Attack()
-    end
+		if (Knife == nil) then return Log("no knife tool found.") end
 
 		Knife:Activate()
 		task.wait(0.1)
@@ -938,10 +928,6 @@ task.spawn(function()
 				Cashier, Dist, Index = GetCashier() 
 				task.wait()
 			until (Cashier ~= nil) or (IsDead() == true) or (Shutdown == true) 
-      if IsDead() and _G.AutofarmSettings.ForceResetOnKO then
-        Player.Character.Humanoid.Health = 0
-        EMPTY.Text = "| Respawning."
-      end
 			EMPTY.Text = "|"
 			Log("found atm "..tostring(Index)..", distance: "..tostring(Dist)..".")
 			
@@ -987,7 +973,7 @@ task.spawn(function()
 			
 			Root.CFrame = CFrame.new(Cashier.Head.Position) + Vector3.new(math.random(-2, 2), 1, math.random(-2, 2))
 			
-			EMPTY.Text = "| Picking up cash."
+			EMPTY.Text = "| Picking Cash."
 
 			if (Cashier.Humanoid.Health <= 0) then 
 				BrokenATMs += 1
@@ -1019,7 +1005,7 @@ end)
 task.spawn(function()
 	while true and task.wait(_G.AutofarmSettings.LogInterval * 60) do
         local s, e = pcall(function()
-            SendLog(_G.AutofarmSettings.Webhook, {Player.Name, Player.UserId, WALLET.Text, PROFIT.Text, TIMER.Text, BROKEN.Text, "| [custom iku autofarm](https://raw.githubusercontent.com/imightknoiw/iku-custom-autofarm/main/main.lua) by trans and benz.zip/benzonati| "})
+            SendLog(_G.AutofarmSettings.Webhook, {Player.Name, Player.UserId, WALLET.Text, PROFIT.Text, TIMER.Text, BROKEN.Text, "iku cautofarm by benz.zip/benzonati, original by @trans"})
         end)
         if (e) then 
             Log("error while sending log:\n"..tostring(e).."\n")
