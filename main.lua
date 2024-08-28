@@ -6,10 +6,9 @@ else
 end
 
 
-if (not game:IsLoaded()) then 
-	game.Loaded:Wait()
+repeat
 	task.wait(1)
-end
+until game:IsLoaded()
 
 
 repeat task.wait(0.1) until (game:GetService("Players").LocalPlayer) and (game:GetService("Players").LocalPlayer.Character)
@@ -139,6 +138,7 @@ B.BackgroundColor3 = Color3.fromRGB(22, 22, 22)
 B.BorderColor3 = Color3.fromRGB(0, 0, 0)
 B.BorderSizePixel = 0;
 B.Size = UDim2.new(1, 0, 1, 0)
+B.Transparency = NumberSequence.new(0)
 BG.Color = ColorSequence.new{
 	ColorSequenceKeypoint.new(0.00, Color3.fromRGB(153, 35, 193)),
 	ColorSequenceKeypoint.new(0.07, Color3.fromRGB(109, 23, 130)),
